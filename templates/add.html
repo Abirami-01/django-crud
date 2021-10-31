@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add|Update</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+      <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+      <style>
+          form, input {
+              height: 60px;
+              width: 300px;
+          }
+      </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="sidebar">
+            <img src="{% static 'images/logo1.png'%}" style="border-radius: 15px; width: 70px; height: 30px;"><br><br><br>
+            <h2>CONTENTS</h2>
+            <ul>
+                <li><a href="/"><i class="fas fa-home"></i>Home</a></li><br>
+                <li><a href="add.html"><i class="fas fa-project-diagram"></i>Add details</a></li><br>
+                <li><a href="retrieve.html"><i class="fas fa-blog"></i>Display vechicles</a></li><br>
+                <li><a href="#"><i class="fas fa-address-book"></i>Contact</a></li><br>
+                <li><a href="#"><i class="fas fa-address-card"></i>About</a></li>
+            </ul> 
+            <div class="social_media">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="main_content">
+            <div class="header" style="font-size: 200%;">ALTER YOUR ITEMS</div>  
+        <div>
+            {% block content %}
+            <h2 style="color:blueviolet;"> <span style=" background-color:lavenderblush;">ADD NEW DATA HERE</span></h2>
+            <form method =  'POST' style="text-align:right" class="form-group container col-md-6 form-control-lg form-inline col">         
+                {{form.as_p}}
+                {% csrf_token %}
+               <br><br>
+              <input type='submit' value='Add Vehicles' class="btn btn-primary" style="width: 130px; height: 40px; color: white;">
+            <br><br>
+            </form>
+            {% endblock %}
+        </div>
+
+        </div>
+
+</body>
+</html>

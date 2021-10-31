@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head></head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>view data</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+      <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="sidebar">
+            <img src="{% static 'images/logo1.png'%}" style="border-radius: 20px; width: 70px; height: 30px;"><br><br><br>
+            <h2>CONTENTS</h2>
+            <ul>
+                <li><a href="/"><i class="fas fa-home"></i>Home</a></li><br>
+                <li><a href="add.html"><i class="fas fa-project-diagram"></i>Add details</a></li><br>
+                <li><a href="retrieve.html"><i class="fas fa-blog"></i>Display vechicles</a></li><br>
+                <li><a href="#"><i class="fas fa-address-book"></i>Contact</a></li><br>
+                <li><a href="#"><i class="fas fa-address-card"></i>About</a></li>
+            </ul> 
+            <div class="social_media">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="main_content">
+            <div class="header" style="font-size: 200%;">DISPLAY LIST ITEMS IN TABLE FORM</div> 
+            <div class="container">
+                <div class="col-md-7">                
+                {% block content %}
+                  <h1> Vehicle Details</h1>
+                  <table class="table table-bordered">
+                      <thead>
+                          <th> SPEED </th>
+                          <th> AVERAGE SPEED</th>
+                          <th> TEMPERATURE </th>
+                          <th> FUEL LEVEL </th>
+                          <th> ENGINE STATUS </th> 
+                          <th> CAMERA 1 </th>
+                          <th> CAMERA 2 </th>
+                          <th>UPDATE</th>
+                          <th>DELETE</th>
+                      </thead>
+                      <tr>
+                      {% for vh in vehicle %}
+                        <td>{{vh.speed}}</td>
+                        <td>{{vh.avgSpeed}}</td>
+                        <td>{{vh.temperature}}</td>
+                        <td>{{vh.fuelLevel}}</td>
+                        <td>{{vh.EngineStatus}}</td>
+                        <td>{{vh.cam1}}</td>
+                        <td>{{vh.cam2}}</td>
+                        <td><button class="btn btn-primary"><a href="{% url 'update' vh.id%}"style="color: white;">UPDATE</a></button></td>
+                        <td><button class="btn btn-primary"><a href="/delete/{{vh.id}}" style="color: white;">DELETE</a></button></td>
+                      </tr>
+                      {% endfor %} 
+                  </table>
+
+                  {% endblock %}
+                </div>
+                <div class="btn btn-danger"><a href="add.html"><span style="color: white;"> ADD MORE DATA</span></a></div>
+            </div>
+           </div> 
+           </div>
+           
+</body>
+</html>
